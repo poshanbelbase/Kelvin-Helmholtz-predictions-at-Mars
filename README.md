@@ -1,10 +1,10 @@
 # Kelvin-Helmholtz-predictions-at-Mars
-Prediction of the KH instabilities at the Mars using machine learning tools.
+#Prediction of the KH instabilities at the Mars using machine learning tools
 import numpy as np 
 import pandas as pd
 import pytplot
 import pytplot as tplot
-path=r'D:\Space research\maven_data\maven\data\sci\mag\l2\2017\04\mvn_mag_l2_2017093ss_20170403_v01_r01.sts'
+path=r'path to the file'
 mag_vars= pytplot.sts_to_tplot(path)
 times = []
 
@@ -178,10 +178,8 @@ model.add(Dropout(0.2))
 model.add(Dense(1, activation='sigmoid')) 
 adam = Adam(learning_rate=0.001)
 
-# The below line saves the best model from this run into a folder titled best_model, using the f1_m monitor
-# chk = ModelCheckpoint('best_model.pkl', monitor='f1_m', save_best_only=True, mode='max', verbose=1)
-
 model.compile(loss=weighted_binary_crossentropy, optimizer=adam,  metrics=['accuracy'])
 # training data, adjusting its weights. Usually more epochs is better!
 model.fit(x_train, np.asarray(y_train), epochs=10, batch_size=300,validation_data = (x_val, y_val))
+
     
